@@ -18,9 +18,10 @@
 
     <TextView
         android:id="@+id/songName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:textAlignment="center"
         android:hint="I took a pill in Ibiza"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -48,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar"
         app:layout_constraintVertical_bias="0.502"
-        app:srcCompat="@drawable/play" />
+        app:srcCompat="@drawable/pause" />
 
     <ImageButton
         android:id="@+id/next"
