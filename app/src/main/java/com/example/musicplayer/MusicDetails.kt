@@ -58,7 +58,7 @@ class MusicDetails : AppCompatActivity() {
 
         prev.setOnClickListener {
             if (currentIndex > 0){
-                currentIndex--
+                currentIndex-- 
             }else{
                 currentIndex = songsList.size -1
             }

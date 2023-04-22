@@ -48,6 +48,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation ("com.google.android.exoplayer:exoplayer:2.18.5")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.0-beta1")
 
 
 
