@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var currentSongIndex = 0
-    //private var detail = MusicDetails()
+
     private val music = arrayListOf(
         Song(song1, R.raw.song1, R.drawable.love),
         Song(song2, R.raw.song2, R.drawable.ibiza),
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToDetails(position: Int){
+    private fun goToDetails(position: Int) {
         val intent = Intent(this, MusicDetails::class.java)
         intent.putExtra("name", music[position].name)
         intent.putExtra("list", ArrayList(music))
@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity() {
             .create(this@MainActivity, music[position].resource)
         MediaPlayer.mediaPlayer?.start()
     }
-
 
 
     companion object {

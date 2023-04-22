@@ -2,7 +2,7 @@ package com.example.musicplayer.controllers
 
 import com.example.musicplayer.media.MediaPlayer
 
-class MediaControllers{
+class MediaControllers {
     fun pauseMusic() {
         MediaPlayer.mediaPlayer?.let {
             if (MediaPlayer.mediaPlayer!!.isPlaying) {

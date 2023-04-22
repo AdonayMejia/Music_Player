@@ -14,7 +14,7 @@ class MusicDetails : AppCompatActivity() {
 
     private lateinit var binding: ActivityMusicDetailsBinding
     private lateinit var runnable: Runnable
-    private lateinit var songs:Array<Song>
+    private lateinit var songs: Array<Song>
     private var currentIndex = 0
     private val controller = MediaControllers()
     private val handler = Handler()
@@ -47,9 +47,9 @@ class MusicDetails : AppCompatActivity() {
         }
 
         next.setOnClickListener {
-            if (currentIndex < songsList.size -1){
+            if (currentIndex < songsList.size - 1) {
                 currentIndex++
-            }else{
+            } else {
                 currentIndex = 0
             }
             newSong()
@@ -57,20 +57,20 @@ class MusicDetails : AppCompatActivity() {
         }
 
         prev.setOnClickListener {
-            if (currentIndex > 0){
-                currentIndex-- 
-            }else{
-                currentIndex = songsList.size -1
+            if (currentIndex > 0) {
+                currentIndex--
+            } else {
+                currentIndex = songsList.size - 1
             }
             newSong()
             updateSongInfo()
         }
 
 
-        seekBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
 
             override fun onProgressChanged(seekBar: SeekBar?, pos: Int, changed: Boolean) {
-                if (changed){
+                if (changed) {
                     MediaPlayer.mediaPlayer!!.seekTo(pos)
                 }
             }
@@ -82,11 +82,11 @@ class MusicDetails : AppCompatActivity() {
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
 
             }
-        } )
+        })
 
         runnable = Runnable {
             seekBar.progress = MediaPlayer.mediaPlayer!!.currentPosition
-            handler.postDelayed(runnable,1000)
+            handler.postDelayed(runnable, 1000)
         }
         handler.postDelayed(runnable, 1000)
 
@@ -98,7 +98,7 @@ class MusicDetails : AppCompatActivity() {
 
     }
 
-    private fun albumCover(){
+    private fun albumCover() {
         val songName = intent.getStringExtra("name")
         binding.songName.text = songName
         currentIndex = songs.indexOfFirst { it.name == songName }
@@ -107,31 +107,31 @@ class MusicDetails : AppCompatActivity() {
         )
     }
 
-    private fun newSong(){
+    private fun newSong() {
         MediaPlayer.mediaPlayer?.let {
-                if (MediaPlayer.mediaPlayer!!.isPlaying) {
-                    MediaPlayer.mediaPlayer!!.stop()
-                }
+            if (MediaPlayer.mediaPlayer!!.isPlaying) {
+                MediaPlayer.mediaPlayer!!.stop()
+            }
             MediaPlayer.mediaPlayer?.reset()
-            val music = Uri.parse("android.resource://${packageName}/${songs[currentIndex].resource}")
+            val music =
+                Uri.parse("android.resource://${packageName}/${songs[currentIndex].resource}")
             MediaPlayer.mediaPlayer?.setDataSource(this, music)
             MediaPlayer.mediaPlayer?.prepare()
             MediaPlayer.mediaPlayer?.start()
             binding.seekBar.max = MediaPlayer.mediaPlayer!!.duration
-            handler.postDelayed(runnable,1000)
+            handler.postDelayed(runnable, 1000)
             binding.play.setImageResource(R.drawable.pause)
         }
 
     }
 
-    private fun updateSongInfo(){
+    private fun updateSongInfo() {
         val newName = songs.map { it.name }
         val newImage = songs.map { it.image }
 
         binding.songImage.setImageResource(newImage[currentIndex])
         binding.songName.text = newName[currentIndex]
     }
-
 
 
 }
